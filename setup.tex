@@ -1,0 +1,89 @@
+\moderncvstyle{banking}
+\moderncvcolor{purple} % blue, orange, green, red, purple, grey, black
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-lcroman,es-notilde,english]{babel} 
+
+% Setup de cambio de idiomas
+\usepackage{ifthen}
+\newif\ifspa
+\newif\ifen
+\newcommand{\spa}[1]{\ifspa#1\fi}
+\newcommand{\en}[1]{\ifen#1\fi}
+
+% Cambiar entre idiomas: Encapsular texto de cada idioma en las tags \spa{texto} o \en{text}
+% Para usar en español, compilar normalmente. Para usar en ingles, pdflatex "\def\inenglish{1} \input{cv.tex}"
+\ifdefined\inenglish
+  \entrue
+\else
+  \spatrue
+\fi
+
+% Márgenes
+\usepackage[scale=0.75, top=2cm, bottom=2.5cm]{geometry}
+
+% Lastpage para el footer (x paginas de y)
+% Fontawesome para iconos en la cabecera
+% Xpatch para cambiar el formato del titulo
+% Framed (environment shaded*) y textpos (environment textblock*) para el 'boton' de cambio de lenguaje
+% Setspace para el interlineado
+\usepackage{lastpage,fontawesome,xpatch,framed,setspace}
+\usepackage[absolute,overlay]{textpos}
+
+% Interlineado 1.5
+\onehalfspacing
+
+% Sacar el 'subject' del PDF (era 'Resume of...') y cambiar el titulo (para que no sea "nombre - titulo")
+\makeatletter
+\AtEndPreamble{\hypersetup{pdfsubject={},pdftitle={\@firstname~\@familyname}}}
+\makeatother
+
+% Comando de mes en español, para el footer
+\newcommand{\MONTH}{%
+  \ifcase\the\month
+  \or \spa{Enero}\en{January} 
+  \or \spa{Febrero}\en{February} 
+  \or \spa{Marzo}\en{March} 
+  \or \spa{Abril}\en{April} 
+  \or \spa{Mayo}\en{May} 
+  \or \spa{Junio}\en{June} 
+  \or \spa{Julio}\en{July} 
+  \or \spa{Agosto}\en{August} 
+  \or \spa{Septiembre}\en{September} 
+  \or \spa{Octubre}\en{October} 
+  \or \spa{Noviembre}\en{November} 
+  \or \spa{Diciembre}\en{December} 
+  \fi
+}
+
+% Cambiar formato de título (en vez de 'Autor | Curriculum' ahora es 'Autor \n Curriculum')
+\makeatletter
+\xpatchcmd{\makehead}{\titlestyle{~|~\@title}}{\par\vskip1ex\titlestyle{\@title}}{}{}
+\makeatother
+
+% Achicar el subtítulo ('Curriculum Vitae')
+\renewcommand*{\titlefont}{\fontsize{21}{25}\mdseries\upshape} 
+
+% Header y Footer
+\makeatletter
+\fancyhead[R]{\color{gray}\@firstname{}~\@familyname{}}
+\ifnum\value{page} > 1
+  \fancyfoot[R]{\color{gray}\textit{\MONTH \the\year \\ \thepage/\pageref*{LastPage}}}
+\else
+  \fancyfoot[R]{\color{gray}\textit{\MONTH \the\year}}
+\fi
+\makeatother
+
+% Solo footer para la primera pagina
+\fancypagestyle{onlyfooter}{
+\fancyhf{}
+\ifnum\value{page} > 1
+  \fancyfoot[R]{\color{gray}\textit{\MONTH \the\year \\ \thepage/\pageref*{LastPage}}}
+\else
+  \fancyfoot[R]{\color{gray}\textit{\MONTH \the\year}}
+\fi
+}
+
+% Cambiar color de boton de lenguajes. Mientras mas cerca de 1, mas claro.
+\definecolor{shadecolor}{gray}{0.9}
+
+
