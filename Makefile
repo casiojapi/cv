@@ -1,7 +1,7 @@
 all: clean
 	$(MAKE) spanish
 	$(MAKE) english
-	pdftoppm cv.pdf cv -png -rx 300 -ry 300
+	sips -s format png cv.pdf --out cv.png
 
 spanish: clean
 	pdflatex cv.tex
