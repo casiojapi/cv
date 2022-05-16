@@ -1,7 +1,15 @@
 \moderncvstyle{banking}
-\moderncvcolor{purple} % blue, orange, green, red, purple, grey, black
+\moderncvcolor{blue} % blue, orange, green, red, purple, grey, black
 \usepackage[utf8]{inputenc}
-\usepackage[spanish,es-lcroman,es-notilde,english]{babel} 
+\usepackage[spanish,es-lcroman,es-notilde,english]{babel}
+
+% Agregar distintos bullets con simbolos como rombo y >
+\usepackage{amssymb}
+\newcommand{\diamondbullet}[0]{\normalsize \raisebox{0.2ex}{$\scriptstyle\color{color1}{\blacklozenge}$}}
+\newcommand{\caretbullet}[0]{\scriptsize\color{color1}{\faCaretRight}}
+
+% Paquete para agregar margenes a los itemizes
+\usepackage{enumitem}
 
 % Setup de cambio de idiomas
 \usepackage{ifthen}
@@ -40,18 +48,18 @@
 % Comando de mes en español, para el footer
 \newcommand{\MONTH}{%
   \ifcase\the\month
-  \or \spa{Enero}\en{January} 
-  \or \spa{Febrero}\en{February} 
-  \or \spa{Marzo}\en{March} 
-  \or \spa{Abril}\en{April} 
-  \or \spa{Mayo}\en{May} 
-  \or \spa{Junio}\en{June} 
-  \or \spa{Julio}\en{July} 
-  \or \spa{Agosto}\en{August} 
-  \or \spa{Septiembre}\en{September} 
-  \or \spa{Octubre}\en{October} 
-  \or \spa{Noviembre}\en{November} 
-  \or \spa{Diciembre}\en{December} 
+  \or \spa{Enero}\en{January}
+  \or \spa{Febrero}\en{February}
+  \or \spa{Marzo}\en{March}
+  \or \spa{Abril}\en{April}
+  \or \spa{Mayo}\en{May}
+  \or \spa{Junio}\en{June}
+  \or \spa{Julio}\en{July}
+  \or \spa{Agosto}\en{August}
+  \or \spa{Septiembre}\en{September}
+  \or \spa{Octubre}\en{October}
+  \or \spa{Noviembre}\en{November}
+  \or \spa{Diciembre}\en{December}
   \fi
 }
 
@@ -61,7 +69,7 @@
 \makeatother
 
 % Achicar el subtítulo ('Curriculum Vitae')
-\renewcommand*{\titlefont}{\fontsize{21}{25}\mdseries\upshape} 
+\renewcommand*{\titlefont}{\fontsize{21}{25}\mdseries\upshape}
 
 % Header y Footer
 \makeatletter
@@ -86,4 +94,10 @@
 % Cambiar color de boton de lenguajes. Mientras mas cerca de 1, mas claro.
 \definecolor{shadecolor}{gray}{0.9}
 
+% Tech chips
+\usepackage{tcolorbox}
+\definecolor{mylightblue}{rgb}{0.122, 0.435, 0.698}
+\newtcbox{\mycolorbox}{on line, colframe=mylightblue, colback=mylightblue!5!white,
+  boxrule=0.5pt,arc=4pt,boxsep=0pt,left=2pt,right=2pt,top=2pt,bottom=2pt}
 
+\newcommand*{\tech}[1]{\footnotesize\mycolorbox{\strut #1}}
