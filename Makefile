@@ -15,7 +15,7 @@ english: clean
 	$(MAKE) clean
 
 clean:
-	rm -rf *.aux *.log *.out *.fls *.fdb_latexmk
+	rm -rf *.aux *.log *.out *.fls *.fdb_latexmk *.png
 
 cleanclean: clean
 	rm -rf *.pdf
